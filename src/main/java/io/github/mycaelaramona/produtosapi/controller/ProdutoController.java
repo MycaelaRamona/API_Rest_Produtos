@@ -5,6 +5,7 @@ import io.github.mycaelaramona.produtosapi.model.Produto;
 import io.github.mycaelaramona.produtosapi.repository.ProdutoRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -42,6 +43,23 @@ public class ProdutoController {
 
         //Outra alternativa seria:
         //return produtoRepository.findById(id).orElse(null);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletarProduto(@PathVariable("id") String id){
+        produtoRepository.deleteById(id);
+    }
+
+    @PutMapping("{id}")
+    public void atualizarProduto(@PathVariable("id") String id, @RequestBody Produto produto){
+        produto.setId(id);
+        produtoRepository.save(produto);
+    }
+
+    //se eu fosse passar mais paramentro era só repetir o que fiz para o @RequestParam separados por vírgula.
+    @GetMapping
+    public List<Produto> buscarProduto(@RequestParam("nome") String nome){
+        return produtoRepository.findByNome(nome);
     }
 
 }
