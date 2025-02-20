@@ -2,14 +2,28 @@ package io.github.mycaelaramona.produtosapi.model;
 
 
 //POJO -> Plain Old Java Object
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "produto")
 public class Produto {
 
+    //NOTA: se as colunas estão com o mesmo nome das propriedades. Não é necessário colocar a annotation @Column
+    @Id
+    @Column(name = "id")
     private String id;
 
+    @Column(name = "nome")
     private String nome;
 
+    @Column(name = "descricao")
     private String descricao;
 
+    @Column(name = "preco")
     private  Double preco;
 
 
